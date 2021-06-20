@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+});
+
+Route::prefix('customers')->group(function (){
+    Route::get('/' , [CustomerController::class , 'index'])->name('customers.index');
+    Route::get('create', [CustomerController::class , 'create'])->name('customers.create');
+    Route::post('store', [CustomerController::class , 'store'])->name('customers.store');
+    Route::get('/{id}/edit' , [CustomerController::class , 'edit'])->name('customers.edit');
+    Route::post('/{id}/update' , [CustomerController::class , 'update'])->name('customers.update');
+    Route::get('/{id}/delete' , [CustomerController::class , 'destroy'])->name('customers.delete');
 });
