@@ -11,5 +11,9 @@ class Customer extends Model
 
     protected $table = 'customer';
 
+    function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+       return $this->belongsTo(City::class);
+    }
 
 }

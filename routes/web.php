@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\CustomerController;
+use App\Models\City;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +27,14 @@ Route::prefix('customers')->group(function (){
     Route::get('/{id}/edit' , [CustomerController::class , 'edit'])->name('customers.edit');
     Route::post('/{id}/update' , [CustomerController::class , 'update'])->name('customers.update');
     Route::get('/{id}/delete' , [CustomerController::class , 'destroy'])->name('customers.delete');
+    Route::get('/filterByCity' , [CustomerController::class , 'filterByCity'])->name('customers.filterByCity');
+});
+
+Route::prefix('cities')->group(function(){
+    Route::get('/' , [CityController::class , 'index'])->name('cities.index');
+    Route::get('/create' , [CityController::class , 'create'])->name('cities.create');
+    Route::post('/store' , [CityController::class , 'store'])->name('cities.store');
+    Route::get('{id}/edit' , [CityController::class , 'edit'])->name('cities.edit');
+    Route::post('{id}/update' , [CityController::class , 'update'])->name('cities.update');
+    Route::get('{id}/delete' , [CityController::class , 'delete'])->name('cities.destroy');
 });
