@@ -11,7 +11,7 @@ class CustomerController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $customers = Customer::all();
+        $customers = Customer::paginate(1);
         $cities = City::all();
         return view('customer.list', compact('customers' , 'cities'));
     }
@@ -80,5 +80,16 @@ class CustomerController extends Controller
         $cities = City::all();
 
         return view('customer.list' , compact('cityFilter' , 'customers' , 'totalCustomerFilter' , 'cities'));
+    }
+
+    function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        if (!$keyword){
+            return redirect()->route('customers.index');
+        }
+        $customers = Customer::where('name' , 'LIKE' , '%'.$keyword.'%')->paginate(1);
+        $cities = City::all();
+        return view('customer.list' , compact('customers' , 'cities'));
     }
 }

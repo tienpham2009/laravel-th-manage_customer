@@ -28,6 +28,7 @@ Route::prefix('customers')->group(function (){
     Route::post('/{id}/update' , [CustomerController::class , 'update'])->name('customers.update');
     Route::get('/{id}/delete' , [CustomerController::class , 'destroy'])->name('customers.delete');
     Route::get('/filterByCity' , [CustomerController::class , 'filterByCity'])->name('customers.filterByCity');
+    Route::get('/search' , [CustomerController::class , 'search'])->name('customers.search');
 });
 
 Route::prefix('cities')->group(function(){
