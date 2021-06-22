@@ -99,8 +99,8 @@
                     </div>
                     <div class="col-6">
                         <div class="pagination float-right">
-                            {{ $customers->links() }}
-{{--                            {{ $customers->appends(request()->query()) }}--}}
+{{--                            {{ $customers->links() }}--}}
+                            {{ $customers->appends(request()->query()) }}
                         </div>
                     </div>
                 </div>

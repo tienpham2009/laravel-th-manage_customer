@@ -12,15 +12,24 @@
                     @csrf
                     <div class="form-group">
                         <label>Tên khách hàng</label>
-                        <input type="text" class="form-control" name="name" placeholder="Enter name" required>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Enter name" >
+                        @error('name')
+                        <p>{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                        <input type="email" class="form-control" name="email" placeholder="Enter email">
+                        @error('email')
+                        <p>{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Ngày sinh</label>
-                        <input type="date" class="form-control" name="dob" required>
+                        <input type="date" class="form-control" name="dob">
+                        @error('dob')
+                        <p>{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>Tỉnh thành</label>
